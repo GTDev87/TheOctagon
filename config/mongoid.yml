@@ -1,0 +1,7 @@
+development:
+  host: localhost
+  database: TheOctogon
+
+test:
+  host: localhost
+  database: TheOctogon
