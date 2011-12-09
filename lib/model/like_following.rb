@@ -6,5 +6,3 @@ class LikeFollowing
   
   embedded_in :like, :inverse_of => :following
 end
-
-puts "LikeFollowing loaded"

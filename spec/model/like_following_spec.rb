@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-puts "LikeFollowing started"
 describe LikeFollowing do
   before(:each) do    
     @like_following = Factory.build(:like_following)

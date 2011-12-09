@@ -13,9 +13,9 @@ Spork.prefork do
   require "mongoid"
   require 'factory_girl'
   require 'database_cleaner'
-  puts "starting run"
   ENV["RACK_ENV"] = 'test'
   
+  Mongoid.logger = nil 
   Mongoid.load!("config/mongoid.yml")
 end
 
@@ -24,7 +24,6 @@ Spork.each_run do
   Dir["lib/**/*.rb"].each { |f| require File.expand_path(f) }
   Dir["spec/support/**/*.rb"].each { |f| require File.expand_path(f) }
 
-  puts File.dirname(__FILE__) + "/factories"
   require File.dirname(__FILE__) + "/factories"
   # This code will be run each time you run your specs.
 
@@ -60,6 +59,7 @@ Spork.each_run do
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
       DatabaseCleaner.orm = "mongoid"
+      
     end
 
     config.before(:each) do

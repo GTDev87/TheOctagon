@@ -7,9 +7,5 @@ class Like
   
   embeds_one :following, class_name: "LikeFollowing"
   accepts_nested_attributes_for :following
-  validates_presence_of :following
-  
-  def name
-    return self[:name].downcase
-  end
+  validates_presence_of :following  
 end

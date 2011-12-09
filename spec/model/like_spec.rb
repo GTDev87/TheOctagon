@@ -11,13 +11,9 @@ describe Like do
   describe "name" do
     it "should create a like using a uppercased name" do
       pizza = Factory.build(:like, :name => "PIZZA")
-      pizza.name.should == "pizza"
+      pizza.name.should == "PIZZA"
     end
-  
-    it "should create a like using a uppercased name with multiple words" do
-      pizza = Factory.build(:like, :name => "PEPPERONNI pizza")
-      pizza.name.should == "pepperonni pizza"
-    end
+    
     
     it "should have a unique name" do
       Factory(:like, :name => "pizza")

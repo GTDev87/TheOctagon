@@ -8,5 +8,8 @@ class User
   embeds_one :personality, class_name: "UserPersonality"
   validates_presence_of :personality
   accepts_nested_attributes_for :personality
+  
+  embeds_one :network, class_name: "UserNetwork"
+  accepts_nested_attributes_for :network
 end
 
