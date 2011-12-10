@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+ENV["RACK_ENV"] = 'development'
+
+require  File.expand_path("config/config.rb")
+
+#find recommenders needed
+user_recommender_filedirs = File.open("user_contenders", "rb").read.split
+like_recommender_filedirs = File.open("like_contenders", "rb").read.split
+
+#include recommender logic needed
+total_filenames_dirs = user_recommender_filedirs | like_recommender_filedirs
+
+@seed_user = User.where("personality.likes.size" => 20).first()
+
+like_contenders = []
+user_contenders = []
+
+user_recommender_filedirs.each do |user_recommender_file| 
+  require File.expand_path("lib/logic/#{user_recommender_file}/user_contender")
+  like_contenders << @contender
+end
+
+like_recommender_filedirs.each do |like_recommender_file| 
+  require File.expand_path("lib/logic/#{like_recommender_file}/like_contender")
+  user_contenders << @contender
+end
+
+
+puts "seed user is #{@seed_user}"
+like_contenders.each do |like_contender|
+  like_contender.get_recommendations(10)
+end
+
+user_contenders.each do |user_contender|
+  user_contender.get_recommendations(10)
+end

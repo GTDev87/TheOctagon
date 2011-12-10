@@ -11,4 +11,8 @@ class RandomLikeRecommendationGenerator
     other_likes = LikeQuery.query_likes_without_names(username_list)
     return LikeRecommendation.new(other_likes.query_returner.return_n_random(number_of_interests))
   end
+  
+  def name()
+    return "Random Like Recommendation Generator"
+  end
 end

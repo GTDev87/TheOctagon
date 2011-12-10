@@ -1,0 +1,1 @@
+@contender = Recommender.new(RandomLikeRecommendationGenerator.new(@seed_user))

@@ -51,4 +51,10 @@ describe RandomUserRecommendationGenerator do
       recommendations.should =~ [@deepak, @reid]
     end
   end
+  
+  describe "name" do
+    it "should return its name" do
+      @recommendation_generator.name.should == "Random User Recommendation Generator"
+    end
+  end
 end

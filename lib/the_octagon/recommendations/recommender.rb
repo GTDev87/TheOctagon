@@ -6,4 +6,8 @@ class Recommender
   def get_recommendations(number_of_recommendations)
     return @generator.generate_recommendations(number_of_recommendations)
   end
+  
+  def name()
+    return @generator.name
+  end
 end

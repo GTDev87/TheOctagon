@@ -1,6 +1,5 @@
 $LOAD_PATH << File.expand_path(File.join('..', 'lib'), File.dirname(__FILE__))
 
-require 'rubygems'
 require 'spork'
 
 Spork.prefork do
@@ -9,19 +8,19 @@ Spork.prefork do
   # need to restart spork for it take effect.
   # This file is copied to spec/ when you run 'rails generate rspec:install'
 
+
+  ENV["RACK_ENV"] = 'test'
+
   require 'rspec'
-  require "mongoid"
   require 'factory_girl'
   require 'database_cleaner'
-  ENV["RACK_ENV"] = 'test'
   
-  Mongoid.logger = nil 
-  Mongoid.load!("config/mongoid.yml")
+  require  File.expand_path("config/config.rb")
 end
 
 Spork.each_run do
   
-  Dir["lib/**/*.rb"].each { |f| require File.expand_path(f) }
+  
   Dir["spec/support/**/*.rb"].each { |f| require File.expand_path(f) }
 
   require File.dirname(__FILE__) + "/factories"

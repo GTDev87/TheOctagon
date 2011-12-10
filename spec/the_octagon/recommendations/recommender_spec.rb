@@ -31,4 +31,10 @@ describe Recommender do
     end
   end
   
+  describe "name" do
+    it "should return the generators name" do
+      user = Factory(:user)
+      Recommender.new(RandomUserRecommendationGenerator.new(user)).name.should == "Random User Recommendation Generator"
+    end
+  end
 end

@@ -51,4 +51,9 @@ describe RandomLikeRecommendationGenerator do
       end
     end
   end
+  describe "name" do
+    it "should return its name" do
+      @recommendation_generator.name.should == "Random Like Recommendation Generator"
+    end
+  end
 end
