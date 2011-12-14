@@ -1,7 +1,7 @@
 development:
   host: localhost
-  database: TheOctogon
+  database: Interests
 
 test:
   host: localhost
-  database: TheOctogon
+  database: TheOctogon_test

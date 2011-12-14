@@ -1,0 +1,24 @@
+Steps to set up the octogon:
+
+In config/mongoid.yml:
+Set the development enviornment to the name of the database in data/db
+
+Create your implementation folder in:
+lib/logic/<your engine name>
+
+your rspec tests are in the folder:
+spec/lib/logic/<your engine name>
+
+In your implementatino folder add the following files:
+like_contender.rb and
+user_contender.rb
+
+put only the following lines in each file respectively:
+in like_contender.rb:
+@contender = Recommender.new(<Your like generator name>.new(@seed_user))
+
+in user_contender.rb:
+@contender = Recommender.new(<Your user generator name>.new(@seed_user))
+
+add the queries you need into the folder:
+lib/queries

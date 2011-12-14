@@ -10,27 +10,40 @@ like_recommender_filedirs = File.open("like_contenders", "rb").read.split
 #include recommender logic needed
 total_filenames_dirs = user_recommender_filedirs | like_recommender_filedirs
 
-@seed_user = User.where("personality.likes.size" => 20).first()
-
-like_contenders = []
-user_contenders = []
-
-user_recommender_filedirs.each do |user_recommender_file| 
-  require File.expand_path("lib/logic/#{user_recommender_file}/user_contender")
-  like_contenders << @contender
+if ARGV[0]
+  @seed_user = UserQuery.find_user_by_username(ARGV[0])
+else
+  @seed_user = User.first(conditions: {})
 end
 
-like_recommender_filedirs.each do |like_recommender_file| 
-  require File.expand_path("lib/logic/#{like_recommender_file}/like_contender")
+user_contenders = []
+like_contenders = []
+
+user_recommender_filedirs.each do |user_recommender_file| 
+  require File.expand_path("lib/logic/#{user_recommender_file}/user_contender.rb")
   user_contenders << @contender
 end
 
+like_recommender_filedirs.each do |like_recommender_file| 
+  require File.expand_path("lib/logic/#{like_recommender_file}/like_contender.rb")
+  like_contenders << @contender
+end
 
 puts "seed user is #{@seed_user}"
 like_contenders.each do |like_contender|
-  like_contender.get_recommendations(10)
+  puts "Recommender is [#{like_contender.name}]"
+  like_recommendation = like_contender.get_recommendations(10)
+  like_recommendation.like_list.each do |like|
+    puts "[#{like.name}]"
+  end
+  puts
 end
 
 user_contenders.each do |user_contender|
-  user_contender.get_recommendations(10)
+  puts "recommender is [#{user_contender.name}]"
+  user_recommendation = user_contender.get_recommendations(10)
+  user_recommendation.user_list.each do |user|
+    puts "[#{user.username}]"
+  end
+  puts
 end
