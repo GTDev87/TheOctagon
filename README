@@ -28,4 +28,4 @@ add the queries you need into the folder:
 lib/queries
 
 Run with:
-./TheOctogon
+./TheOctogon [optional username_of_seed_user]
