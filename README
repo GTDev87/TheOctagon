@@ -26,3 +26,6 @@ in user_contender.rb:
 
 add the queries you need into the folder:
 lib/queries
+
+Run with:
+./TheOctogon
