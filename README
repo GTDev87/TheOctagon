@@ -9,6 +9,10 @@ lib/logic/<your engine name>
 your rspec tests are in the folder:
 spec/lib/logic/<your engine name>
 
+Add the name of your engine folder to
+like_competitors and user_competitors to
+Have your engines run
+
 In your implementatino folder add the following files:
 like_contender.rb and
 user_contender.rb
